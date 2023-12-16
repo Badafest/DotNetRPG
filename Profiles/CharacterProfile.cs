@@ -4,7 +4,7 @@ namespace DotNetRPG.Profiles
     {
         public CharacterProfile()
         {
-            CreateMap<Character, GetCharacterResponse>();
+            CreateMap<Character, CharacterResponse>();
             CreateMap<AddCharacterRequest, Character>();
         }
     }

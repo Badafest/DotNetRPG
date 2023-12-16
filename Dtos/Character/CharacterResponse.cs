@@ -1,6 +1,6 @@
 namespace DotNetRPG.Dtos
 {
-    public class GetCharacterResponse
+    public class CharacterResponse
     {
         public int Id { get; set; } = 0;
         public string Name { get; set; } = "Frodo";

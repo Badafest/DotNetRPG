@@ -12,27 +12,38 @@ namespace DotNetRPG.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ServiceResponse<List<GetCharacterResponse>>>> GetAll()
+        public async Task<ActionResult<ServiceResponse<List<CharacterResponse>>>> GetAll()
         {
-            return Ok(await _CharacterService.GetAllCharacters());
+            var serviceResponse = await _CharacterService.GetAllCharacters();
+            return StatusCode((int)serviceResponse.Status, serviceResponse);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResponse<GetCharacterResponse>>> GetById(int id)
+        public async Task<ActionResult<ServiceResponse<CharacterResponse>>> GetById(int id)
         {
-            return Ok(await _CharacterService.GetCharacterById(id));
+            var serviceResponse = await _CharacterService.GetCharacterById(id);
+            return StatusCode((int)serviceResponse.Status, serviceResponse);
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<List<GetCharacterResponse>>>> Create(AddCharacterRequest newCharacter)
+        public async Task<ActionResult<ServiceResponse<List<CharacterResponse>>>> Create(AddCharacterRequest newCharacter)
         {
-            return Ok(await _CharacterService.AddNewCharacter(newCharacter));
+            var serviceResponse = await _CharacterService.AddNewCharacter(newCharacter);
+            return StatusCode((int)serviceResponse.Status, serviceResponse);
         }
 
         [HttpPut]
-        public async Task<ActionResult<ServiceResponse<List<GetCharacterResponse>>>> Update(UpdateCharacterRequest updatedCharacter)
+        public async Task<ActionResult<ServiceResponse<List<CharacterResponse>>>> Update(UpdateCharacterRequest updatedCharacter)
         {
-            return Ok(await _CharacterService.UpdateCharacter(updatedCharacter));
+            var serviceResponse = await _CharacterService.UpdateCharacter(updatedCharacter);
+            return StatusCode((int)serviceResponse.Status, serviceResponse);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ServiceResponse<List<CharacterResponse>>>> Delete(int id)
+        {
+            var serviceResponse = await _CharacterService.DeleteCharacter(id);
+            return StatusCode((int)serviceResponse.Status, serviceResponse);
         }
     }
 }

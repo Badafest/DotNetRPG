@@ -1,14 +1,22 @@
 // global usings
+global using System.Net;
 global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
 global using AutoMapper;
 
 global using DotNetRPG.Dtos;
 global using DotNetRPG.Models;
 global using DotNetRPG.Services;
+global using DotNetRPG.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("Default"),
+        new MySqlServerVersion(new Version())
+));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
